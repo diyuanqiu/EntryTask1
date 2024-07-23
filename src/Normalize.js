@@ -1,4 +1,10 @@
-// 判断 Entity 是否为 schema
+/**
+ * 判断 Entity 是否为 schema
+ * @param data 传入的部分originalData
+ * @param schema 传入的实体部分
+ * @param addEntity 添加实体属性的方法
+ * @returns {*[]|*}
+ */
 const flatten = (data, schema, addEntity) => {
 
     if(typeof schema.getName !== 'undefined') {
@@ -9,7 +15,13 @@ const flatten = (data, schema, addEntity) => {
     }
 }
 
-// Entity 为 schema 时的处理方法
+/**
+ * Entity 为 schema 时的处理方法， 递归地处理 schema， 保证嵌套的 schema 能被处理
+ * @param data 传入的部分originalData
+ * @param schema 传入的实体部分
+ * @param addEntity 添加实体属性的方法
+ * @returns {*}
+ */
 const isSchemaNormalize = (data, schema, addEntity) => {
 
     const processedEntity = {...data}
@@ -26,7 +38,13 @@ const isSchemaNormalize = (data, schema, addEntity) => {
     return schema.getId(data)
 }
 
-// Entity 为数组或对象时的处理方法
+/**
+ * Entity 为数组或对象时的处理方法
+ * @param data 传入的部分originalData
+ * @param schema 传入的实体部分
+ * @param addEntity 添加实体属性的方法
+ * @returns {*}
+ */
 const notSchemaNormalize = (data, schema, addEntity) => {
     // 可能是数组或者对象
     const currentObj = { ...data }
@@ -53,7 +71,11 @@ const notSchemaNormalize = (data, schema, addEntity) => {
     }
 }
 
-// 在entities中添加Entity的方法
+/**
+ * 在entities中添加属性的方法
+ * @param entities entities键
+ * @returns {(function(*, *): void)|*}
+ */
 const addEntity = (entities) => {
     return (schema, processedEntity) => {
         const key = schema.getName();
@@ -70,6 +92,12 @@ const addEntity = (entities) => {
     }
 }
 
+/**
+ * 暴露给外部使用的normalize方法
+ * @param data 输入的originalData
+ * @param schema 给定的规则schema
+ * @returns {{result: (*[]|*), entities: {}}}
+ */
 export function normalize(data, schema) {
 
     const entities = {};
