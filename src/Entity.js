@@ -7,9 +7,6 @@ class Entity{
     constructor(name, entityParams = {}, entityConfig = {}){
 
         this.name = name;
-        this.entityParams = entityParams;
-        this.entityConfig = entityConfig;
-
         // idAttribute 默认值为字符串'id'
         this.idAttribute = entityConfig.idAttribute || 'id';
         this.init(entityParams)

@@ -85,6 +85,7 @@ const addEntity = (entities) => {
         }
         const currentEntity = entities[key][id]
         if (currentEntity) {
+            // 添加属性
             entities[key][id] = Object.assign(currentEntity, processedEntity)
         } else {
             entities[key][id] = processedEntity

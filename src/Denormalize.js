@@ -80,10 +80,6 @@ const getUnFlatten = (entities) => {
 const getEntity = (entities) => {
     return (entityId, schema) => {
         const key = schema.getName()
-        // 对应的对象可能也是一个schema
-        if (typeof entityId === 'object' && entityId !== null){
-            return entityId
-        }
         return entities[key][entityId]
     }
 }

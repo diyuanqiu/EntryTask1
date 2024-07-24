@@ -45,7 +45,7 @@ const normalizedData = {
     }
   }
 }
-//开始测试上述用例下的，范式化结果对比
+
 test('test originalData to normalizedData', () => {
   const user = new schema.Entity('users', {}, {
     idAttribute: 'uid'
@@ -62,7 +62,7 @@ test('test originalData to normalizedData', () => {
   const data = normalize(originalData, article);
   expect(data).toEqual(normalizedData);
 });
-//开始测试上述例子，反范式化的结果对比
+
 test('test normalizedData to originalData', () => {
   const user = new schema.Entity('users', {}, {
     idAttribute: 'uid'
