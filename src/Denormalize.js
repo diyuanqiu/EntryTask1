@@ -13,7 +13,7 @@ const notSchemaNormalize = (result, schema, unflatten) => {
     Object.keys(schema).forEach(key => {
         if (isArray) {
             Object.keys(currentObj).forEach((childKey) => {
-              currentArr.push(unflatten(currentObj[childKey], schema[key]))
+                currentArr.push(unflatten(currentObj[childKey], schema[key]))
             })
         } else if (currentObj[key]) {
             currentObj[key] = unflatten(currentObj[key], schema[key])
@@ -35,7 +35,7 @@ const notSchemaNormalize = (result, schema, unflatten) => {
  * @param store 用于临时存储的数据
  * @returns {*}
  */
-const isSchemaNormalize = (id, schema, unflatten, getEntity, store) => {
+const SchemaNormalize = (id, schema, unflatten, getEntity, store) => {
     const entity = getEntity(id, schema)
     // schema 的名称
     const key = schema.getName()
@@ -68,7 +68,7 @@ const getUnFlatten = (entities) => {
             return notSchemaNormalize(result, schema, unflatten)
         }
         // store: 临时保存Entity反范式化后的数据
-        return isSchemaNormalize(result, schema, unflatten, entity, store)
+        return SchemaNormalize(result, schema, unflatten, entity, store)
     }
 }
 
